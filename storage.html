@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>añade tus fotos y videos</title>
+</head>
+<body>
+    <p>añade tu  foto </p>
+    <input type="file" id="archivo">
+    <br>
+    <button id="subir">CARGAR UNA IMAGEN</button>
+    <script type="module">
+        
+  //Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+    import { getStorage , ref, uploadBytes } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-storage.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {    
+    apiKey: "AIzaSyDhRn0Y7R8-jX-PGewofJ5MNKx3UUzRcAk",
+    authDomain: "lenguajes-8aef6.firebaseapp.com",
+    projectId: "lenguajes-8aef6",
+    storageBucket: "lenguajes-8aef6.appspot.com",
+    messagingSenderId: "420662257371",
+    appId: "1:420662257371:web:001c1c8fbc44aa7ea5cefe"
+};
+
+  // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const storage =getStorage(app);
+    //creara un  evento  al hacer click al subir 
+    document.getElementById("subir").addEventListener("click",function(){
+      //uniendo informacion  de la lista de fotos  en un archivo  llamado file 
+    var file = document.getElementById("archivo").files[0]
+
+    const storage = getStorage();
+    const storageRef = ref(storage, 'uploadedimage');
+
+   // 'file' comes from the Blob or File API
+    uploadBytes(storageRef, file).then((snapshot) => {
+    console.log('Uploaded a blob or file!');
+    alert(" el archivo se a guardado en firebase")
+});
+    })
+    
+    </script>
+
+    
+</body>
+</html>
